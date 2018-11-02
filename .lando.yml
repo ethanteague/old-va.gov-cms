@@ -1,0 +1,40 @@
+name: va-gov-cms
+recipe: drupal8
+config:
+  webroot: docroot
+
+events:
+  # Clear caches after a database import
+  post-db-import:
+    - appserver: cd $LANDO_WEBROOT && drush cr -y
+
+  # Runs composer install after app starts
+  post-start:
+    - appserver: cd $LANDO_MOUNT && composer install
+
+  # After code changes
+  post-update:
+    - appserver: cd $LANDO_MOUNT && composer install
+    - appserver: cd $LANDO_WEBROOT && drush updb -y &&  drush cr -y
+
+services:
+  node:
+    type: node:custom
+    build:
+      - "cd $LANDO_WEBROOT/themes/custom/vagov && npm install"
+    overrides:
+      services:
+        ports:
+          - 3000:3000
+          - 3001:3001
+        image: node:10
+
+    globals:
+      gulp-cli: "latest"
+tooling:
+  npm:
+    service: node
+  node:
+    service: node
+  gulp:
+    service: node

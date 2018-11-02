@@ -21,7 +21,7 @@ services:
   node:
     type: node:custom
     build:
-      - "cd $LANDO_WEBROOT/themes/custom/vagov && npm install"
+      - "cd $LANDO_MOUNT/docroot/themes/custom/vagov && npm install"
     overrides:
       services:
         ports:

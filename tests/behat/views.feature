@@ -4,14 +4,14 @@ Feature: Views
   As a site owner
   I want to have views for various contexts and applications.
 
-  @spec
+  @spec @views
   Scenario: Views
     Then exactly the following views should exist
       | Name                 | Machine name       | Base table        | Status   | Description                                                                                   |
       | Archive              | archive            | Content           | Disabled | All content, by month.                                                                        |
       | Contact messages     | contact_messages   | Contact message   | Enabled  | View and manage messages sent through contact forms.                                          |
       | Content              | content            | Content           | Enabled  | Find and manage content.                                                                      |
-      | Custom block library | block_content      | Custom block      | Enabled  | Find and manage custom blocks.                                                                |
+      | Custom block library | block_content      | Custom Block      | Enabled  | Find and manage custom blocks.                                                                |
       | Files                | files              | Files             | Enabled  | Find and manage files.                                                                        |
       | Frontpage            | frontpage          | Content           | Enabled  | All content promoted to frontpage                                                             |
       | Glossary             | glossary           | Content           | Disabled | All content, by letter.                                                                       |
@@ -25,7 +25,9 @@ Feature: Views
       | Watchdog             | watchdog           | Log entries       | Enabled  | Recent log messages                                                                           |
       | Who's new            | who_s_new          | Users             | Enabled  | Shows a list of the newest user accounts on the site.                                         |
       | Who's online block   | who_s_online       | Users             | Enabled  | Shows the user names of the most recently active users, and the total number of active users. |
+      | Media library        | media_library      | Media             | Enabled  |                                                                                               |
 
+  @spec @views
   Scenario: Views displays
     Then exactly the following views displays should exist
       | View                 | Title             | Machine name       | Display plugin |
@@ -53,6 +55,9 @@ Feature: Views
       | Media                | Browser           | entity_browser_1   | Entity browser |
       | Media                | Image Browser     | entity_browser_2   | Entity browser |
       | Media                | Media             | media_page_list    | Page           |
+      | Media library        | Master            | default            | Master         |
+      | Media library        | Page              | page               | Page           |
+      | Media library        | Widget            | widget             | Page           |
       | Moderated content    | Master            | default            | Master         |
       | Moderated content    | Moderated content | moderated_content  | Page           |
       | Moderation history   | Master            | default            | Master         |
